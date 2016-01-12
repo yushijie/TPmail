@@ -1,0 +1,28 @@
+<include file="Public/header" />
+		<p>
+		
+		this is login page!
+		
+		</p>
+		<h3 id="info"></h3>
+		
+		<form action="{:U('Home/user/login')}" id="login_form" method="post">
+			name:		<input type="text" name="name" id="name" value="" /><br />
+			password:	<input type="password" name="password" id="password" value="" /><br />
+			
+			<input type="button" id="login_btn" name="" value="go" />
+		</form>
+<include file="Public/footer" />
+
+<script type="text/javascript">
+$(function(){
+	$('#login_btn').click(function(){
+		var login_data = $('#login_form').serialize();
+		var action = $('#login_form').attr('action');
+		
+		$.post(action,login_data,function(res){
+			$('#info').html('Status:'+res.status+' info:'+res.value);
+		});
+	});
+});
+</script>
