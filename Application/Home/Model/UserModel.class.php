@@ -2,7 +2,23 @@
 namespace Home\Model;
 use Think\Model;
 class UserModel extends Model {
+	
+	protected $patchvalidate = true;
+	protected $_validate = array(
+		array('name','require','验证码必须！'), //默认情况下用正则进行验证
+		array('name','','帐号名称已经存在！',0,'unique',1), // 在新增的时候验证name字段是否唯一
+	);
+	
+	
 	public function register($data) {
+		
+		if (!$this->create()){
+		     // 如果创建失败 表示验证没有通过 输出错误提示信息
+		     return($User->getError());
+		}else{
+		     // 验证通过 可以进行其他数据操作
+		}
+		
 		$res = array();
 		if ($data['name'] != '' && $data['password'] != '') {
 			
