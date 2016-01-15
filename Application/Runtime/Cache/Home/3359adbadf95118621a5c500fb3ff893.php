@@ -17,7 +17,7 @@
 		<form action="<?php echo U('Home/user/register');?>" id="register_form" method="post">
 			name:		<input type="text" name="name" id="name" value="" /><br />
 			password:	<input type="password" name="password" id="password" value="" /><br />
-			con_pass:	<input type="password" name="con_pass" id="" value="" /><br />
+			<!--con_pass:	<input type="password" name="con_pass" id="" value="" /><br />-->
 			email:		<input type="text" name="email" id="" value="" /><br />
 			
 			<input type="button" id="register_btn" name="" value="go" />
@@ -38,7 +38,10 @@ $(function(){
 		var action = $('#register_form').attr('action');
 		
 		$.post(action,register_data,function(res){
-			$('#info').html('Status:'+res.status+' info:'+res.value);
+			$('#info').html('');
+			for(var r in res){
+				$('#info').append(res[r]+'<br />');
+			}
 		});
 	});
 });

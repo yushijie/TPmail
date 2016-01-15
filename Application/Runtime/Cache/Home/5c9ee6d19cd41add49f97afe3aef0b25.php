@@ -36,7 +36,10 @@ $(function(){
 		var action = $('#login_form').attr('action');
 		
 		$.post(action,login_data,function(res){
-			$('#info').html('Status:'+res.status+' info:'+res.value);
+			$('#info').html('');
+			for(var r in res){
+				$('#info').append(res[r]);
+			}
 		});
 	});
 });
