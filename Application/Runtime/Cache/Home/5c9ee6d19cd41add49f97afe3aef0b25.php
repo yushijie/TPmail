@@ -2,7 +2,7 @@
 	<meta charset="UTF-8"/>
 	<head>
 		<title>mytp1</title>
-		<script src="/Public/static/jquery-1.8.2.min.js" type="text/javascript"></script>
+		<script src="/thinkphp/Public/static/jquery-1.8.2.min.js" type="text/javascript"></script>
 	</head>
 	<body>
 
@@ -38,7 +38,7 @@ $(function(){
 		$.post(action,login_data,function(res){
 			$('#info').html('');
 			for(var r in res){
-				$('#info').append(res[r]);
+				$('#info').append(res[r]+'<br />');
 			}
 		});
 	});

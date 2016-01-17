@@ -2,7 +2,7 @@
 	<meta charset="UTF-8"/>
 	<head>
 		<title>mytp1</title>
-		<script src="/Public/static/jquery-1.8.2.min.js" type="text/javascript"></script>
+		<script src="/thinkphp/Public/static/jquery-1.8.2.min.js" type="text/javascript"></script>
 	</head>
 	<body>
 
@@ -17,7 +17,7 @@
 		<form action="<?php echo U('Home/user/register');?>" id="register_form" method="post">
 			name:		<input type="text" name="name" id="name" value="" /><br />
 			password:	<input type="password" name="password" id="password" value="" /><br />
-			<!--con_pass:	<input type="password" name="con_pass" id="" value="" /><br />-->
+			con_pass:	<input type="password" name="con_pass" id="" value="" /><br />
 			email:		<input type="text" name="email" id="" value="" /><br />
 			
 			<input type="button" id="register_btn" name="" value="go" />
