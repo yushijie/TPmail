@@ -11,6 +11,9 @@
 
 		<link rel="stylesheet" type="text/css" href="/Public/static/bootstrap/css/bootstrap.min.css" />
 
+		<script src="/Public/static/jquery-1.12.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/Public/static/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+
 	</head>
 
 	<body>
@@ -55,20 +58,70 @@
 		</nav>
 
 		
-	<h2>replaced top block!</h2>
-
+			<p>top</p>
+		
 
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-3">
 					
-						<p>left</p>
-					
+	<ul class="list-group">
+		<li class="list-group-item">
+			会员管理
+			<ul class="list-group">
+				<li class="list-group-item">新增会员</li>
+				<li class="list-group-item">会员列表</li>
+			</ul>
+		</li>
+	</ul>
+
 				</div>
 				<div class="col-md-9">
 					
-						<p>content</p>
-					
+	<form id="edit_form" class="form-horizontal" action="<?php echo U('Admin/user/edit');?>">
+		<div class="form-group">
+			<label for="" class="col-sm-2 control-label">用户名</label>
+			<div class="col-sm-10">
+				<input value="<?php echo ($user_info["name"]); ?>" name="name" type="text" class="form-control" id="" placeholder="用户名">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-sm-2 control-label">密码</label>
+			<div class="col-sm-10">
+				<input type="password" name="password" class="form-control" id="" placeholder="密码">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-sm-2 control-label">Email</label>
+			<div class="col-sm-10">
+				<input value="<?php echo ($user_info["email"]); ?>" name="email" type="email" class="form-control" id="" placeholder="Email">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button id="edit_btn" type="button" class="btn btn-default">确定</button>
+			</div>
+		</div>
+	</form>
+
+	<script type="text/javascript">
+		$(function(){
+			$('#edit_btn').click(function(){
+				var register_data = $('#edit_form').serialize();
+				var action = $('#edit_form').attr('action');
+				
+				$.post(action,register_data,function(res){
+					//$('#info').html('');
+					for(var r in res){
+						$('body').append(res[r]+'<br />');
+					}
+				});
+			});
+		});
+	</script>
+
+
 				</div>
 				<div class="col-md-12">
 					
@@ -79,8 +132,5 @@
 		</div>
 
 	</body>
-
-	<script src="/Public/static/jquery-1.12.0.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="/Public/static/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
 
 </html>

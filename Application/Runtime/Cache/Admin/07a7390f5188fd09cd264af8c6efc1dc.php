@@ -55,20 +55,53 @@
 		</nav>
 
 		
-	<h2>replaced top block!</h2>
-
+			<p>top</p>
+		
 
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-3">
 					
-						<p>left</p>
-					
+	<ul class="list-group">
+		<li class="list-group-item">
+			会员管理
+			<ul class="list-group">
+				<li class="list-group-item">新增会员</li>
+				<li class="list-group-item">会员列表</li>
+			</ul>
+		</li>
+	</ul>
+
 				</div>
 				<div class="col-md-9">
 					
-						<p>content</p>
-					
+	<table class="table table-striped table-hover">
+		<tr>
+			<th>Uid</th>
+			<th>用户名</th>
+			<th>email</th>
+			<th>IP</th>
+			<th>创建时间</th>
+			<th>最后登陆</th>
+			<th>操作</th>
+		</tr>
+		<?php if(is_array($user_list[data])): foreach($user_list[data] as $key=>$user): ?><tr>
+			<td><?php echo ($user["id"]); ?></td>
+			<td><?php echo ($user["name"]); ?></td>
+			<td><?php echo ($user["email"]); ?></td>
+			<td><?php echo ($user["ip"]); ?></td>
+			<td><?php echo (date("Y-m-d H:i:s",$user["create_time"])); ?></td>
+			<td><?php echo (date("Y-m-d H:i:s",$user["last_time"])); ?></td>
+			<td>
+				<a href="<?php echo U('Admin/User/edit',array('id'=>$user[id]));?>">编辑</a>
+				<a href="">删除</a>
+			</td>
+		</tr><?php endforeach; endif; ?>
+		<tfoot>
+			<th><?php echo ($user_list["page"]); ?></th>
+		</tfoot>
+	</table>
+
 				</div>
 				<div class="col-md-12">
 					
