@@ -1,41 +1,44 @@
 <include file="Public/header" />
-		<div class="">
-			<em>商品详情</em>
-			<ul>
-				<li>商品名称:{$goods_info.title} </li>
-				<li>商品价格:{$goods_info.price}</li>
-				<li>上架时间:{$goods.create_time|date="Y-m-d H:i:s",###}</li>
-			</ul>
-		 
-			<input type="button" name="" id="subtract" value="-" />	
-			<input type="number" name="" id="num" value="1" />	
-			<input type="button" name="" id="add" value="+" />	
-			 
-			<input type="button" name="" id="addToCart" value="加入购物车" />
-		</div>
+<div class="">
+	<em>商品详情</em>
+	<ul>
+		<li>商品名称:{$goods_info.title} </li>
+		<li>商品价格:{$goods_info.price}</li>
+		<li>上架时间:{$goods.create_time|date="Y-m-d H:i:s",###}</li>
+	</ul>
+	<form id="addtocart_form" action="{:U('Home/goods/addtocart')}" method="post">
+		<input type="hidden" name="id" id="id" value="{$goods_info.title}" />
 
+		<input type="button" name="" id="subtract" value="-" />
+		<input type="number" name="num" id="num" value="1" />
+		<input type="button" name="" id="add" value="+" />
+
+		<input type="button" name="" id="addToCart" value="加入购物车" />
+	</form>
+	<div id="info"></div>
+</div>
 
 <include file="Public/footer" />
 
 <script type="text/javascript">
-	$(function(){
-		
-		$('#add').click(function(){
-			$('#num').val(parseInt($('#num').val())+1);
+	$(function() {
+		$('#add').click(function() {
+			$('#num').val(parseInt($('#num').val()) + 1);
 		});
-		
-		$('#subtract').click(function(){
-			if(parseInt($('#num').val())>1){
-				$('#num').val(parseInt($('#num').val())-1);
+		$('#subtract').click(function() {
+			if (parseInt($('#num').val()) > 1) {
+				$('#num').val(parseInt($('#num').val()) - 1);
 			}
 		});
-		
-		$('#addToCart').click(function(){
-			
+		$('#addToCart').click(function() {
+			var addtocart_data = $('#addtocart_form').serialize();
+			var action = $('#addtocart_form').attr('action');
+			$.post(action, addtocart_data, function(res) {
+				$('#info').html('');
+				for (var r in res) {
+					$('#info').append(res[r] + '<br />');
+				}
+			});
 		});
-		
 	});
 </script>
-
-
-

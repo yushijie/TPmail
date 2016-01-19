@@ -9,10 +9,10 @@
 
 		<title>mail manager</title>
 
-		<link rel="stylesheet" type="text/css" href="/Public/static/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/thinkphp/Public/static/bootstrap/css/bootstrap.min.css" />
 
-		<script src="/Public/static/jquery-1.12.0.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="/Public/static/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/thinkphp/Public/static/jquery-1.12.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/thinkphp/Public/static/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
 
 	</head>
 
@@ -27,13 +27,13 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">MAIL</a>
+					<a class="navbar-brand" href="<?php echo U('Admin/index/index');?>">MAIL</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="<?php echo U('Admin/user/lists');?>">会员 <span class="sr-only">(current)</span></a></li>
+						<li><a href="<?php echo U('Admin/user/lists');?>">会员 <span class="sr-only">(current)</span></a></li>
 						<li><a href="<?php echo U('Admin/goods/lists');?>">商品</a></li>
 						<li><a href="#">广告</a></li>
 						<li><a href="#">设置</a></li>

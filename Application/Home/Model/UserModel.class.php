@@ -52,6 +52,9 @@ class UserModel extends Model {
 		$data_arr = $this->where($map)->find();
 		if(count($data_arr) > 0){
 			if($data_arr['password'] == md5($data['password'])){
+				
+				session('login_id',$data_arr['id']);
+				
 				$res = array(
 					'status' => 1,
 					'value' => 'login success!'
