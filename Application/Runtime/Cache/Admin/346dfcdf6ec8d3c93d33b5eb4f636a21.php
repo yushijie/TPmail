@@ -67,9 +67,10 @@
 					
 	<ul class="list-group">
 		<li class="list-group-item">
-			会员管理
+			商品管理
 			<ul class="list-group">
-				<li class="list-group-item"><a href="<?php echo U('User/lists');?>">会员列表</a></li>
+				<li class="list-group-item"><a href="<?php echo U('Goods/lists');?>">商品列表</a></li>
+				<li class="list-group-item"><a href="<?php echo U('Goods/add');?>">新增商品</a></li>
 			</ul>
 		</li>
 	</ul>
@@ -77,30 +78,24 @@
 				</div>
 				<div class="col-md-9">
 					
-	<form id="edit_form" class="form-horizontal" action="<?php echo U('Admin/user/edit');?>">
-		<input type="hidden" name="id" id="id" value="<?php echo ($user_info["id"]); ?>" />
+	<form id="add_form" class="form-horizontal" action="<?php echo U('Admin/goods/add');?>">
+		<input type="hidden" name="id" id="id" value="<?php echo ($goods_info["id"]); ?>" />
 		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">用户名</label>
+			<label for="" class="col-sm-2 control-label">商品名称</label>
 			<div class="col-sm-10">
-				<input value="<?php echo ($user_info["name"]); ?>" name="name" type="text" class="form-control" id="" placeholder="用户名">
+				<input value="<?php echo ($goods_info["title"]); ?>" name="title" type="text" class="form-control" id="" placeholder="商品名称">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">密码</label>
+			<label for="" class="col-sm-2 control-label">商品价格</label>
 			<div class="col-sm-10">
-				<input type="password" name="password" class="form-control" id="" placeholder="密码">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">Email</label>
-			<div class="col-sm-10">
-				<input value="<?php echo ($user_info["email"]); ?>" name="email" type="email" class="form-control" id="" placeholder="Email">
+				<input type="number" name="price" class="form-control" id="" placeholder="商品价格">
 			</div>
 		</div>
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<button id="edit_btn" type="button" class="btn btn-default">确定</button>
+				<button id="add_btn" type="button" class="btn btn-default">确定</button>
 			</div>
 		</div>
 		<div class="form-group">
@@ -112,9 +107,9 @@
 
 	<script type="text/javascript">
 		$(function(){
-			$('#edit_btn').click(function(){
-				var register_data = $('#edit_form').serialize();
-				var action = $('#edit_form').attr('action');
+			$('#add_btn').click(function(){
+				var register_data = $('#add_form').serialize();
+				var action = $('#add_form').attr('action');
 				
 				$.post(action,register_data,function(res){
 					$('#info').html('');

@@ -3,8 +3,13 @@ namespace Home\Controller;
 use Think\Controller;
 class IndexController extends Controller {
 	public function index() {
-		$this -> show();
+		$this -> display();
 	}
 
-	
+	public function goodslists() {
+		$goods_list = D('Goods')->getGoodsList();
+		
+        $this->assign('goods_list',$goods_list);
+        $this->display();
+	}
 }

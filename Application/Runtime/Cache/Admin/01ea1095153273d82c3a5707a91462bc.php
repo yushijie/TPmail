@@ -27,13 +27,13 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">MAIL</a>
+					<a class="navbar-brand" href="<?php echo U('Admin/index/index');?>">MAIL</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="<?php echo U('Admin/user/lists');?>">会员 <span class="sr-only">(current)</span></a></li>
+						<li><a href="<?php echo U('Admin/user/lists');?>">会员 <span class="sr-only">(current)</span></a></li>
 						<li><a href="<?php echo U('Admin/goods/lists');?>">商品</a></li>
 						<li><a href="#">广告</a></li>
 						<li><a href="#">设置</a></li>
@@ -67,9 +67,10 @@
 					
 	<ul class="list-group">
 		<li class="list-group-item">
-			会员管理
+			商品管理
 			<ul class="list-group">
-				<li class="list-group-item"><a href="<?php echo U('User/lists');?>">会员列表</a></li>
+				<li class="list-group-item"><a href="<?php echo U('Goods/lists');?>">商品列表</a></li>
+				<li class="list-group-item"><a href="<?php echo U('Goods/add');?>">新增商品</a></li>
 			</ul>
 		</li>
 	</ul>
@@ -77,52 +78,49 @@
 				</div>
 				<div class="col-md-9">
 					
-	<form id="edit_form" class="form-horizontal" action="<?php echo U('Admin/user/edit');?>">
-		<input type="hidden" name="id" id="id" value="<?php echo ($user_info["id"]); ?>" />
-		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">用户名</label>
-			<div class="col-sm-10">
-				<input value="<?php echo ($user_info["name"]); ?>" name="name" type="text" class="form-control" id="" placeholder="用户名">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">密码</label>
-			<div class="col-sm-10">
-				<input type="password" name="password" class="form-control" id="" placeholder="密码">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">Email</label>
-			<div class="col-sm-10">
-				<input value="<?php echo ($user_info["email"]); ?>" name="email" type="email" class="form-control" id="" placeholder="Email">
-			</div>
-		</div>
-
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<button id="edit_btn" type="button" class="btn btn-default">确定</button>
-			</div>
-		</div>
-		<div class="form-group">
-			<div id="info" class="col-sm-offset-2 col-sm-10 text-danger">
-				
-			</div>
-		</div>
-	</form>
+	<table class="table table-striped table-hover">
+		<tr>
+			<th>id</th>
+			<th>商品名称</th>
+			<th>商品价格</th>
+			<th>创建时间</th>
+			<th>更新时间</th>
+			<th>操作</th>
+		</tr>
+		<?php if(is_array($goods_list[data])): foreach($goods_list[data] as $key=>$goods): ?><tr id="goodsid<?php echo ($goods["id"]); ?>">
+				<td><?php echo ($goods["id"]); ?></td>
+				<td><?php echo ($goods["title"]); ?></td>
+				<td><?php echo ($goods["price"]); ?></td>
+				<td><?php echo (date("Y-m-d H:i:s",$goods["create_time"])); ?></td>
+				<td><?php echo (date("Y-m-d H:i:s",$goods["update_time"])); ?></td>
+				<td>
+					<a href="<?php echo U('Admin/Goods/edit',array('id'=>$goods[id]));?>">编辑</a>
+					<a class="del" href="<?php echo U('Admin/Goods/delete');?>" uid="<?php echo ($goods[id]); ?>">删除</a>
+				</td>
+			</tr><?php endforeach; endif; ?>
+		<tfoot>
+			<th><?php echo ($goods_list["page"]); ?></th>
+		</tfoot>
+	</table>
 
 	<script type="text/javascript">
-		$(function(){
-			$('#edit_btn').click(function(){
-				var register_data = $('#edit_form').serialize();
-				var action = $('#edit_form').attr('action');
-				
-				$.post(action,register_data,function(res){
-					$('#info').html('');
-					for(var r in res){
-						$('#info').append(res[r]+'<br />');
+		$('.del').click(function(e) {
+			//alert(e.type);	//获取事件类型
+			e.preventDefault();
+			var con = confirm("确定要删除此条信息？");
+			if (con == true) {
+				var _id = $(this).attr('uid');
+				var _url = $(this).attr('href');
+				$.post(_url, "id="+_id, function(res) {
+					for (var r in res) {
+						if(r=='status' && res[r]=='1'){
+							alert('delete success');
+							$('#goodsid'+_id).remove();
+						}
 					}
 				});
-			});
+			} else {
+			}
 		});
 	</script>
 

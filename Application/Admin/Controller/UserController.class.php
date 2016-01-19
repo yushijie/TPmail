@@ -13,10 +13,9 @@ class UserController extends Controller {
 	public function edit(){
 		if(IS_POST){
 			$data = I('post.');
-			$this->ajaxReturn($data);
-			//$status = D('User')->editUserInfo($data);
+			$status = D('User')->editUserInfo($data);
 			
-			//$this->ajaxReturn($status);
+			$this->ajaxReturn($status);
 		}else{
 			$user_info = D('User')->getUserInfo();
 			
@@ -25,4 +24,15 @@ class UserController extends Controller {
 		}
 	}
 	
+	public function delete(){
+		if(IS_POST){
+			$data = I('post.');
+			
+			$status = D('User')->deleteUser($data);
+			
+			$this->ajaxReturn($status);
+		}else{
+			
+		}
+	}
 }

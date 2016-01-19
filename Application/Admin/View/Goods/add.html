@@ -1,0 +1,58 @@
+<extend name="Public:base" />
+<block name="left">
+	<ul class="list-group">
+		<li class="list-group-item">
+			商品管理
+			<ul class="list-group">
+				<li class="list-group-item"><a href="{:U('Goods/lists')}">商品列表</a></li>
+				<li class="list-group-item"><a href="{:U('Goods/add')}">新增商品</a></li>
+			</ul>
+		</li>
+	</ul>
+</block>
+
+<block name="content">
+	<form id="add_form" class="form-horizontal" action="{:U('Admin/goods/add')}">
+		<input type="hidden" name="id" id="id" value="{$goods_info.id}" />
+		<div class="form-group">
+			<label for="" class="col-sm-2 control-label">商品名称</label>
+			<div class="col-sm-10">
+				<input value="{$goods_info.title}" name="title" type="text" class="form-control" id="" placeholder="商品名称">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="" class="col-sm-2 control-label">商品价格</label>
+			<div class="col-sm-10">
+				<input type="number" name="price" class="form-control" id="" placeholder="商品价格">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button id="add_btn" type="button" class="btn btn-default">确定</button>
+			</div>
+		</div>
+		<div class="form-group">
+			<div id="info" class="col-sm-offset-2 col-sm-10 text-danger">
+				
+			</div>
+		</div>
+	</form>
+
+	<script type="text/javascript">
+		$(function(){
+			$('#add_btn').click(function(){
+				var register_data = $('#add_form').serialize();
+				var action = $('#add_form').attr('action');
+				
+				$.post(action,register_data,function(res){
+					$('#info').html('');
+					for(var r in res){
+						$('#info').append(res[r]+'<br />');
+					}
+				});
+			});
+		});
+	</script>
+
+</block>

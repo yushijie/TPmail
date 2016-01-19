@@ -69,7 +69,8 @@
 		<li class="list-group-item">
 			会员管理
 			<ul class="list-group">
-				<li class="list-group-item"><a href="<?php echo U('User/lists');?>">会员列表</a></li>
+				<li class="list-group-item"><a href="<?php echo U('Goods/lists');?>">商品列表</a></li>
+				<li class="list-group-item"><a href="<?php echo U('Goods/add');?>">新增商品</a></li>
 			</ul>
 		</li>
 	</ul>
@@ -77,24 +78,18 @@
 				</div>
 				<div class="col-md-9">
 					
-	<form id="edit_form" class="form-horizontal" action="<?php echo U('Admin/user/edit');?>">
-		<input type="hidden" name="id" id="id" value="<?php echo ($user_info["id"]); ?>" />
+	<form id="edit_form" class="form-horizontal" action="<?php echo U('Admin/goods/edit');?>">
+		<input type="hidden" name="id" id="id" value="<?php echo ($goods_info["id"]); ?>" />
 		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">用户名</label>
+			<label for="" class="col-sm-2 control-label">商品名称</label>
 			<div class="col-sm-10">
-				<input value="<?php echo ($user_info["name"]); ?>" name="name" type="text" class="form-control" id="" placeholder="用户名">
+				<input value="<?php echo ($goods_info["title"]); ?>" name="title" type="text" class="form-control" id="" placeholder="商品名称">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">密码</label>
+			<label for="" class="col-sm-2 control-label">商品价格</label>
 			<div class="col-sm-10">
-				<input type="password" name="password" class="form-control" id="" placeholder="密码">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="" class="col-sm-2 control-label">Email</label>
-			<div class="col-sm-10">
-				<input value="<?php echo ($user_info["email"]); ?>" name="email" type="email" class="form-control" id="" placeholder="Email">
+				<input value="<?php echo ($goods_info["price"]); ?>" type="number" name="price" class="form-control" id="" placeholder="商品价格">
 			</div>
 		</div>
 
