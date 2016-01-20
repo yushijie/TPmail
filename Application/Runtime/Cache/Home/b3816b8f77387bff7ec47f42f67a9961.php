@@ -1,10 +1,12 @@
 <?php if (!defined('THINK_PATH')) exit();?><html>
-
+	<meta charset="UTF-8"/>
 	<head>
-		<title></title>
+		<title>mytp1</title>
+		<script src="/Public/static/jquery-1.12.0.min.js" type="text/javascript"></script>
 	</head>
-
 	<body>
+
+
 		<table class="table table-striped table-hover">
 			<tr>
 				<th>id</th>
@@ -24,6 +26,18 @@
 				<th><?php echo ($goods_list["page"]); ?></th>
 			</tfoot>
 		</table>
-	</body>
+		
+<br />
+<input type="button" name="" id="showcart" value="显示购物车" />
 
+
+	</body>
 </html>
+
+<script type="text/javascript">
+$(function(){
+	$('#showcart').click(function(){
+		location.href="<?php echo U('Home/Cart/showCart');?>";
+	});
+});
+</script>

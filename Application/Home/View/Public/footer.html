@@ -1,7 +1,14 @@
+<br />
+<input type="button" name="" id="showcart" value="显示购物车" />
+
 
 	</body>
 </html>
 
 <script type="text/javascript">
-
+$(function(){
+	$('#showcart').click(function(){
+		location.href="{:U('Home/Cart/showCart')}";
+	});
+});
 </script>

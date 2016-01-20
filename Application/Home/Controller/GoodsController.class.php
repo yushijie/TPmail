@@ -14,7 +14,11 @@ class GoodsController extends Controller {
 		$data = I('post.');
 
 		if (session('login_id')) {
-
+			$uid = session('login_id');
+			$status = D('Cart')->addToCart($uid,$data);
+			
+			$this -> ajaxReturn($status);
+			
 		} else {
 			$good_arr = array('id' => $data['id'], 'num' => intval($data['num']));
 			$goods_arr = unserialize(session('cart_goods'));
@@ -35,7 +39,8 @@ class GoodsController extends Controller {
 			session('cart_goods', $goods_arr);
 
 			//echo session('cart_goods');
-			$this -> ajaxReturn(array('status' => 1, 'value' => 'add to cart success!'));
+			//$this -> ajaxReturn(array('status' => 1, 'value' => 'add to cart success!'));
+			$this -> ajaxReturn($goods_arr);
 		}
 	}
 

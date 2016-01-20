@@ -9,10 +9,10 @@
 
 		<title>mail manager</title>
 
-		<link rel="stylesheet" type="text/css" href="/thinkphp/Public/static/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/Public/static/bootstrap/css/bootstrap.min.css" />
 
-		<script src="/thinkphp/Public/static/jquery-1.12.0.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="/thinkphp/Public/static/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/Public/static/jquery-1.12.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/Public/static/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
 
 	</head>
 
